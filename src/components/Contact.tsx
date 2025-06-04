@@ -1,0 +1,207 @@
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import AOS from 'aos';
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  React.useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aqui você implementaria a lógica de envio do formulário
+    console.log('Dados do formulário:', formData);
+    setShowSuccess(true);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: '',
+    });
+    setTimeout(() => setShowSuccess(false), 5000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  return (
+    <div className="py-5 mt-5">
+      <Container>
+        <Row className="mb-5">
+          <Col lg={8} className="mx-auto text-center">
+            <h1 className="display-4 mb-4" data-aos="fade-up">
+              Entre em Contato
+            </h1>
+            <p className="lead mb-5" data-aos="fade-up" data-aos-delay="100">
+              Estamos aqui para responder suas dúvidas e ajudar você a fazer
+              parte do Be the Change.
+            </p>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-center">
+          <Col lg={8}>
+            <div className="contact-form bg-white p-5 rounded shadow-sm" data-aos="fade-up">
+              {showSuccess && (
+                <Alert variant="success" className="mb-4">
+                  Mensagem enviada com sucesso! Entraremos em contato em breve.
+                </Alert>
+              )}
+
+              <Form onSubmit={handleSubmit}>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-4">
+                      <Form.Label htmlFor="name">Nome Completo</Form.Label>
+                      <Form.Control
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        aria-required="true"
+                        placeholder="Digite seu nome"
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-4">
+                      <Form.Label htmlFor="email">E-mail</Form.Label>
+                      <Form.Control
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        aria-required="true"
+                        placeholder="Digite seu e-mail"
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-4">
+                      <Form.Label htmlFor="phone">Telefone</Form.Label>
+                      <Form.Control
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Digite seu telefone"
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-4">
+                      <Form.Label htmlFor="subject">Assunto</Form.Label>
+                      <Form.Select
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        aria-required="true"
+                      >
+                        <option value="">Selecione um assunto</option>
+                        <option value="informacoes">Informações Gerais</option>
+                        <option value="inscricao">Inscrição no Programa</option>
+                        <option value="visita">Agendar Visita</option>
+                        <option value="outro">Outro Assunto</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <Form.Group className="mb-4">
+                  <Form.Label htmlFor="message">Mensagem</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    aria-required="true"
+                    rows={5}
+                    placeholder="Digite sua mensagem"
+                  />
+                </Form.Group>
+
+                <div className="text-center">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    className="px-5"
+                  >
+                    Enviar Mensagem
+                  </Button>
+                </div>
+              </Form>
+            </div>
+
+            <div className="contact-info mt-5" data-aos="fade-up">
+              <Row className="text-center">
+                <Col md={4} className="mb-4 mb-md-0">
+                  <div className="contact-item">
+                    <i className="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+                    <h3 className="h5">Endereço</h3>
+                    <p>Rua Exemplo, 123<br />São Paulo - SP</p>
+                  </div>
+                </Col>
+                <Col md={4} className="mb-4 mb-md-0">
+                  <div className="contact-item">
+                    <i className="fas fa-phone fa-2x text-primary mb-3"></i>
+                    <h3 className="h5">Telefone</h3>
+                    <p>(11) 1234-5678<br />(11) 98765-4321</p>
+                  </div>
+                </Col>
+                <Col md={4}>
+                  <div className="contact-item">
+                    <i className="fas fa-envelope fa-2x text-primary mb-3"></i>
+                    <h3 className="h5">E-mail</h3>
+                    <p>contato@bethechange.com.br</p>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+export default Contact; 
