@@ -24,7 +24,7 @@ O Be the Change é um projeto dedicado a desenvolver a autonomia e individualida
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/be-the-change.git
+git clone https://github.com/seu-usuario/BeTheChange.git
 ```
 
 2. Entre no diretório do projeto:
