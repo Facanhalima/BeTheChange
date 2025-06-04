@@ -29,7 +29,7 @@ git clone https://github.com/seu-usuario/BeTheChange.git
 
 2. Entre no diretório do projeto:
 ```bash
-cd be-the-change
+cd BeTheChange
 ```
 
 3. Instale as dependências:
