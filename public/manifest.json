@@ -26,6 +26,16 @@
       "src": "BeTheChangeNavBarNova.png",
       "type": "image/png",
       "sizes": "1024x1024"
+    },
+    {
+      "src": "VincentFoto.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    },
+    {
+      "src": "TiphanieFoto.jpeg",
+      "type": "image/jpeg",
+      "sizes": "1024x1024"
     }
   ],
   "start_url": ".",
