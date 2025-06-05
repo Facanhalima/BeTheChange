@@ -13,10 +13,10 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <main>
       <section className="hero-section bg-light py-5 min-vh-100 d-flex align-items-center">
-        <Container>
-          <Row className="align-items-center">
+        <Container fluid="lg" className="px-4">
+          <Row className="align-items-center gy-4">
             <Col lg={6} data-aos="fade-right">
               <h1 className="display-4 fw-bold mb-4">
                 Guiando pessoas atípicas rumo à independência
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
                 <Button
                   variant="primary"
                   size="lg"
-                  className="rounded-pill"
+                  className="rounded-pill px-4 py-2"
                 >
                   Saiba como participar
                 </Button>
@@ -41,6 +41,7 @@ const Home: React.FC = () => {
                 src="BeTheChangeLogo.png"
                 alt="Be the Change - Imagem Principal"
                 className="img-fluid"
+                style={{ maxWidth: '80%' }}
               />
             </Col>
           </Row>
@@ -48,36 +49,36 @@ const Home: React.FC = () => {
       </section>
 
       <section className="features-section py-5 bg-white">
-        <Container>
+        <Container fluid="lg" className="px-4">
           <h2 className="text-center mb-5" data-aos="fade-up">
             Nossos Pilares
           </h2>
-          <Row>
-            <Col md={4} className="mb-4" data-aos="fade-up" data-aos-delay="100">
-              <div className="text-center p-4">
+          <Row className="g-4">
+            <Col sm={6} lg={4} className="mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div className="text-center p-4 h-100 bg-light rounded shadow-sm">
                 <i className="fas fa-user-circle fa-3x mb-3 text-primary"></i>
-                <h3>Individualidade</h3>
-                <p>
+                <h3 className="h4 mb-3">Individualidade</h3>
+                <p className="mb-0">
                   Respeitamos e valorizamos as características únicas de cada
                   pessoa, desenvolvendo programas personalizados.
                 </p>
               </div>
             </Col>
-            <Col md={4} className="mb-4" data-aos="fade-up" data-aos-delay="200">
-              <div className="text-center p-4">
+            <Col sm={6} lg={4} className="mb-4" data-aos="fade-up" data-aos-delay="200">
+              <div className="text-center p-4 h-100 bg-light rounded shadow-sm">
                 <i className="fas fa-hands-helping fa-3x mb-3 text-primary"></i>
-                <h3>Autonomia</h3>
-                <p>
+                <h3 className="h4 mb-3">Autonomia</h3>
+                <p className="mb-0">
                   Promovemos o desenvolvimento de habilidades essenciais para uma
                   vida mais independente.
                 </p>
               </div>
             </Col>
-            <Col md={4} className="mb-4" data-aos="fade-up" data-aos-delay="300">
-              <div className="text-center p-4">
+            <Col sm={6} lg={4} className="mb-4" data-aos="fade-up" data-aos-delay="300">
+              <div className="text-center p-4 h-100 bg-light rounded shadow-sm">
                 <i className="fas fa-users fa-3x mb-3 text-primary"></i>
-                <h3>Interação Social</h3>
-                <p>
+                <h3 className="h4 mb-3">Interação Social</h3>
+                <p className="mb-0">
                   Facilitamos a integração com o meio social e urbano através de
                   atividades práticas e orientadas.
                 </p>
@@ -86,7 +87,7 @@ const Home: React.FC = () => {
           </Row>
         </Container>
       </section>
-    </>
+    </main>
   );
 };
 
