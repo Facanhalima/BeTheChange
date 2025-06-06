@@ -30,11 +30,10 @@ const About: React.FC = () => {
             <div className="p-4 bg-light rounded-3 h-100">
               <h2 className="h3 mb-4">Nossa Missão</h2>
               <p className="mb-0">
-                O Be the Change nasceu da necessidade de criar um ambiente
-                acolhedor e estruturado para pessoas atípicas desenvolverem sua
-                independência. Nossa missão é proporcionar ferramentas,
-                conhecimento e suporte necessários para que cada participante
-                possa alcançar seu potencial máximo.
+              O Be The Change, apresenta uma proposta inovadora
+              combinando conceitos desenvolvidos no Brasil e EUA,
+              preparando jovens com transtorno do espectro autista e/ou deficiência intelectual para a transição para a vida independente.
+              Nossas experiências de aprendizagem personalizadas e baseadas no mundo real promovem a autonomia, habilidades práticas para a vida e capacitam esses jovens a se tornarem participantes ativos em suas vidas diárias.
               </p>
             </div>
           </Col>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import Navigation from './components/Navbar';
 import Home from './components/Home';
@@ -45,23 +45,27 @@ const App: React.FC = () => {
         <Container fluid="lg" className="px-4">
           <Row className="gy-4">
             <Col lg={4}>
-              <h5 className="mb-4">Be the Change</h5>
+              <h5 className="mb-4">Be the Change Rio</h5>
               <p className="mb-4">
-                Transformando vidas através do desenvolvimento da autonomia e
-                independência de pessoas com TEA.
+                Desenvolvendo autonomia e qualidade de vida para jovens com TEA
+                através de atividades práticas e vivências reais.
               </p>
               <div className="social-links">
-                <a href="#" className="text-light me-3">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="text-light me-3">
+                <a 
+                  href="https://instagram.com/bethechange_rio" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-light me-3"
+                >
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="#" className="text-light me-3">
-                  <i className="fab fa-linkedin-in"></i>
-                </a>
-                <a href="#" className="text-light">
-                  <i className="fab fa-youtube"></i>
+                <a 
+                  href="https://wa.me/5521996278101" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-light me-3"
+                >
+                  <i className="fab fa-whatsapp"></i>
                 </a>
               </div>
             </Col>
@@ -69,36 +73,39 @@ const App: React.FC = () => {
               <h6 className="mb-3">Links Rápidos</h6>
               <ul className="list-unstyled">
                 <li className="mb-2">
-                  <a href="/" className="text-light text-decoration-none">Início</a>
+                  <Link to="/" className="text-light text-decoration-none">Início</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/sobre" className="text-light text-decoration-none">Sobre</a>
+                  <Link to="/sobre" className="text-light text-decoration-none">Sobre</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/profissionais" className="text-light text-decoration-none">Profissionais</a>
+                  <Link to="/profissionais" className="text-light text-decoration-none">Profissionais</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/programacoes" className="text-light text-decoration-none">Serviços</a>
+                  <Link to="/programacoes" className="text-light text-decoration-none">Serviços</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/contato" className="text-light text-decoration-none">Contato</a>
+                  <Link to="/depoimentos" className="text-light text-decoration-none">Depoimentos</Link>
+                </li>
+                <li className="mb-2">
+                  <Link to="/contato" className="text-light text-decoration-none">Contato</Link>
                 </li>
               </ul>
             </Col>
             <Col lg={3}>
-              <h6 className="mb-3">Serviços</h6>
+              <h6 className="mb-3">Nossos Serviços</h6>
               <ul className="list-unstyled">
                 <li className="mb-2">
-                  <a href="#" className="text-light text-decoration-none">Avaliação Personalizada</a>
+                  <Link to="/programacoes" className="text-light text-decoration-none">Desenvolvimento de Autonomia</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="#" className="text-light text-decoration-none">Desenvolvimento de Autonomia</a>
+                  <Link to="/programacoes" className="text-light text-decoration-none">Habilidades Sociais</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="#" className="text-light text-decoration-none">Habilidades Sociais</a>
+                  <Link to="/programacoes" className="text-light text-decoration-none">Atividades Externas</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="#" className="text-light text-decoration-none">Suporte Familiar</a>
+                  <Link to="/programacoes" className="text-light text-decoration-none">Suporte Familiar</Link>
                 </li>
               </ul>
             </Col>
@@ -107,15 +114,20 @@ const App: React.FC = () => {
               <ul className="list-unstyled">
                 <li className="mb-2">
                   <i className="fas fa-map-marker-alt me-2"></i>
-                  Rua Exemplo, 123 - São Paulo, SP
+                  Rua Maria Eugênia, 300
+                  Rio de Janeiro – RJ
                 </li>
                 <li className="mb-2">
                   <i className="fas fa-phone me-2"></i>
-                  (11) 1234-5678
+                  (21) 99627-8101
                 </li>
                 <li className="mb-2">
                   <i className="fas fa-envelope me-2"></i>
-                  contato@bethechange.com.br
+                  bethechangerio@gmail.com
+                </li>
+                <li className="mb-2">
+                  <i className="fab fa-instagram me-2"></i>
+                  @bethechange_rio
                 </li>
               </ul>
             </Col>
@@ -124,7 +136,7 @@ const App: React.FC = () => {
             <Col className="text-center">
               <hr className="mb-4" />
               <p className="mb-0">
-                &copy; {new Date().getFullYear()} Be the Change. Todos os direitos reservados.
+                &copy; {new Date().getFullYear()} Be the Change Rio. Todos os direitos reservados.
               </p>
             </Col>
           </Row>

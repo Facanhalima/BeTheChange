@@ -181,17 +181,17 @@ const Contact: React.FC = () => {
                   {
                     icon: 'fa-map-marker-alt',
                     title: 'Endereço',
-                    content: ['Rua Exemplo, 123', 'São Paulo - SP']
+                    content: ['Rua Maria Eugênia, 300', 'Rio de Janeiro – RJ']
                   },
                   {
                     icon: 'fa-phone',
                     title: 'Telefone',
-                    content: ['(11) 1234-5678', '(11) 98765-4321']
+                    content: ['(21) 99627-8101']
                   },
                   {
                     icon: 'fa-envelope',
                     title: 'E-mail',
-                    content: ['contato@bethechange.com.br']
+                    content: ['bethechangerio@gmail.com']
                   }
                 ].map((item, index) => (
                   <Col md={4} key={index}>
