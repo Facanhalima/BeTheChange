@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
 
   return (
     <div className="py-5 mt-5">
-      <Container>
+      <Container fluid="lg" className="px-4">
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 mb-4" data-aos="fade-up">
@@ -66,9 +66,9 @@ const Contact: React.FC = () => {
           </Col>
         </Row>
 
-        <Row className="justify-content-center">
+        <Row className="justify-content-center g-4">
           <Col lg={8}>
-            <div className="contact-form bg-white p-5 rounded shadow-sm" data-aos="fade-up">
+            <div className="contact-form bg-light p-4 p-lg-5 rounded-3 shadow-sm" data-aos="fade-up">
               {showSuccess && (
                 <Alert variant="success" className="mb-4">
                   Mensagem enviada com sucesso! Entraremos em contato em breve.
@@ -76,10 +76,10 @@ const Contact: React.FC = () => {
               )}
 
               <Form onSubmit={handleSubmit}>
-                <Row>
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
-                      <Form.Label htmlFor="name">Nome Completo</Form.Label>
+                <Row className="g-4">
+                  <Col sm={6}>
+                    <Form.Group>
+                      <Form.Label htmlFor="name">Nome</Form.Label>
                       <Form.Control
                         type="text"
                         id="name"
@@ -89,11 +89,12 @@ const Contact: React.FC = () => {
                         required
                         aria-required="true"
                         placeholder="Digite seu nome"
+                        className="form-control-lg"
                       />
                     </Form.Group>
                   </Col>
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
+                  <Col sm={6}>
+                    <Form.Group>
                       <Form.Label htmlFor="email">E-mail</Form.Label>
                       <Form.Control
                         type="email"
@@ -104,14 +105,12 @@ const Contact: React.FC = () => {
                         required
                         aria-required="true"
                         placeholder="Digite seu e-mail"
+                        className="form-control-lg"
                       />
                     </Form.Group>
                   </Col>
-                </Row>
-
-                <Row>
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
+                  <Col sm={6}>
+                    <Form.Group>
                       <Form.Label htmlFor="phone">Telefone</Form.Label>
                       <Form.Control
                         type="tel"
@@ -120,11 +119,12 @@ const Contact: React.FC = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Digite seu telefone"
+                        className="form-control-lg"
                       />
                     </Form.Group>
                   </Col>
-                  <Col md={6}>
-                    <Form.Group className="mb-4">
+                  <Col sm={6}>
+                    <Form.Group>
                       <Form.Label htmlFor="subject">Assunto</Form.Label>
                       <Form.Select
                         id="subject"
@@ -133,6 +133,7 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         required
                         aria-required="true"
+                        className="form-control-lg"
                       >
                         <option value="">Selecione um assunto</option>
                         <option value="informacoes">Informações Gerais</option>
@@ -142,29 +143,31 @@ const Contact: React.FC = () => {
                       </Form.Select>
                     </Form.Group>
                   </Col>
+                  <Col xs={12}>
+                    <Form.Group>
+                      <Form.Label htmlFor="message">Mensagem</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        aria-required="true"
+                        rows={5}
+                        placeholder="Digite sua mensagem"
+                        className="form-control-lg"
+                      />
+                    </Form.Group>
+                  </Col>
                 </Row>
 
-                <Form.Group className="mb-4">
-                  <Form.Label htmlFor="message">Mensagem</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    aria-required="true"
-                    rows={5}
-                    placeholder="Digite sua mensagem"
-                  />
-                </Form.Group>
-
-                <div className="text-center">
+                <div className="text-center mt-4">
                   <Button
                     type="submit"
                     variant="primary"
                     size="lg"
-                    className="px-5"
+                    className="px-5 py-3 rounded-pill"
                   >
                     Enviar Mensagem
                   </Button>
@@ -173,28 +176,36 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="contact-info mt-5" data-aos="fade-up">
-              <Row className="text-center">
-                <Col md={4} className="mb-4 mb-md-0">
-                  <div className="contact-item">
-                    <i className="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
-                    <h3 className="h5">Endereço</h3>
-                    <p>Rua Exemplo, 123<br />São Paulo - SP</p>
-                  </div>
-                </Col>
-                <Col md={4} className="mb-4 mb-md-0">
-                  <div className="contact-item">
-                    <i className="fas fa-phone fa-2x text-primary mb-3"></i>
-                    <h3 className="h5">Telefone</h3>
-                    <p>(11) 1234-5678<br />(11) 98765-4321</p>
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className="contact-item">
-                    <i className="fas fa-envelope fa-2x text-primary mb-3"></i>
-                    <h3 className="h5">E-mail</h3>
-                    <p>contato@bethechange.com.br</p>
-                  </div>
-                </Col>
+              <Row className="g-4">
+                {[
+                  {
+                    icon: 'fa-map-marker-alt',
+                    title: 'Endereço',
+                    content: ['Rua Exemplo, 123', 'São Paulo - SP']
+                  },
+                  {
+                    icon: 'fa-phone',
+                    title: 'Telefone',
+                    content: ['(11) 1234-5678', '(11) 98765-4321']
+                  },
+                  {
+                    icon: 'fa-envelope',
+                    title: 'E-mail',
+                    content: ['contato@bethechange.com.br']
+                  }
+                ].map((item, index) => (
+                  <Col md={4} key={index}>
+                    <div className="contact-item text-center p-4 bg-light rounded-3 h-100">
+                      <i className={`fas ${item.icon} fa-2x text-primary mb-3`}></i>
+                      <h3 className="h5 mb-3">{item.title}</h3>
+                      {item.content.map((line, idx) => (
+                        <p key={idx} className={idx === item.content.length - 1 ? 'mb-0' : 'mb-1'}>
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                  </Col>
+                ))}
               </Row>
             </div>
           </Col>

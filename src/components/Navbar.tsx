@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation: React.FC = () => {
@@ -35,64 +35,79 @@ const Navigation: React.FC = () => {
   }, [location]);
 
   return (
-    <Navbar 
-      bg={isScrolled || isExpanded ? 'white' : 'transparent'} 
-      expand="lg" 
-      fixed="top" 
+    <Navbar
+      expand="lg"
+      fixed="top"
+      className={`py-3 transition-all ${
+        isScrolled ? 'shadow-sm bg-white' : 'bg-transparent'
+      }`}
       expanded={isExpanded}
-      onToggle={(expanded) => setIsExpanded(expanded)}
-      className={`transition-all duration-300 ${(isScrolled || isExpanded) ? 'shadow-sm py-2' : 'py-3'}`}
     >
       <Container fluid="lg" className="px-4">
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
-            src="BeTheChangeNavBarNova.png"
+            src="/BeTheChangeLogo.png"
             alt="Be the Change Logo"
             height="40"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
+        
         <Navbar.Toggle 
-          aria-controls="basic-navbar-nav" 
-          className="border-0 shadow-none"
-        />
+          aria-controls="basic-navbar-nav"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="border-0 p-0"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </Navbar.Toggle>
+
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
+          <Nav className="mx-auto">
             <Nav.Link 
               as={Link} 
               to="/" 
-              className={`px-3 ${location.pathname === '/' ? 'active fw-bold' : ''}`}
+              className={`px-3 ${location.pathname === '/' ? 'active' : ''}`}
             >
               Início
             </Nav.Link>
             <Nav.Link 
               as={Link} 
               to="/sobre" 
-              className={`px-3 ${location.pathname === '/sobre' ? 'active fw-bold' : ''}`}
+              className={`px-3 ${location.pathname === '/sobre' ? 'active' : ''}`}
             >
-              Sobre o Projeto
-            </Nav.Link>
-            <Nav.Link 
-              as={Link} 
-              to="/programacoes" 
-              className={`px-3 ${location.pathname === '/programacoes' ? 'active fw-bold' : ''}`}
-            >
-              Programações
+              Sobre
             </Nav.Link>
             <Nav.Link 
               as={Link} 
               to="/profissionais" 
-              className={`px-3 ${location.pathname === '/profissionais' ? 'active fw-bold' : ''}`}
+              className={`px-3 ${location.pathname === '/profissionais' ? 'active' : ''}`}
             >
               Profissionais
             </Nav.Link>
             <Nav.Link 
               as={Link} 
-              to="/contato" 
-              className={`px-3 ${location.pathname === '/contato' ? 'active fw-bold' : ''}`}
+              to="/programacoes" 
+              className={`px-3 ${location.pathname === '/programacoes' ? 'active' : ''}`}
             >
-              Contato
+              Serviços
             </Nav.Link>
+            <Nav.Link 
+              as={Link} 
+              to="/depoimentos" 
+              className={`px-3 ${location.pathname === '/depoimentos' ? 'active' : ''}`}
+            >
+              Depoimentos
+            </Nav.Link>
+          </Nav>
+          <Nav className="ms-auto">
+            <Link to="/contato" className="text-decoration-none">
+              <Button
+                variant="primary"
+                className="rounded-pill px-4"
+              >
+                Fale Conosco
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

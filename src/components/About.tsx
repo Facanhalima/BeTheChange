@@ -12,7 +12,7 @@ const About: React.FC = () => {
 
   return (
     <div className="py-5 mt-5">
-      <Container>
+      <Container fluid="lg" className="px-4">
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 mb-4" data-aos="fade-up">
@@ -25,70 +25,87 @@ const About: React.FC = () => {
           </Col>
         </Row>
 
-        <Row className="mb-5">
+        <Row className="mb-5 g-4">
           <Col lg={6} data-aos="fade-right">
-            <h2 className="mb-4">Nossa Missão</h2>
-            <p>
-              O Be the Change nasceu da necessidade de criar um ambiente
-              acolhedor e estruturado para pessoas atípicas desenvolverem sua
-              independência. Nossa missão é proporcionar ferramentas,
-              conhecimento e suporte necessários para que cada participante
-              possa alcançar seu potencial máximo.
-            </p>
+            <div className="p-4 bg-light rounded-3 h-100">
+              <h2 className="h3 mb-4">Nossa Missão</h2>
+              <p className="mb-0">
+                O Be the Change nasceu da necessidade de criar um ambiente
+                acolhedor e estruturado para pessoas atípicas desenvolverem sua
+                independência. Nossa missão é proporcionar ferramentas,
+                conhecimento e suporte necessários para que cada participante
+                possa alcançar seu potencial máximo.
+              </p>
+            </div>
           </Col>
           <Col lg={6} data-aos="fade-left">
-            <h2 className="mb-4">Objetivos</h2>
-            <ul>
-              <li>Desenvolver habilidades de vida diária</li>
-              <li>Fortalecer a autonomia e independência</li>
-              <li>Promover a integração social</li>
-              <li>Estimular a autoconfiança</li>
-              <li>Criar rotinas estruturadas e adaptáveis</li>
-            </ul>
+            <div className="p-4 bg-light rounded-3 h-100">
+              <h2 className="h3 mb-4">Objetivos</h2>
+              <ul className="list-unstyled mb-0">
+                {[
+                  'Desenvolver habilidades de vida diária',
+                  'Fortalecer a autonomia e independência',
+                  'Promover a integração social',
+                  'Estimular a autoconfiança',
+                  'Criar rotinas estruturadas e adaptáveis'
+                ].map((item, index) => (
+                  <li key={index} className="mb-3 d-flex align-items-start">
+                    <i className="fas fa-check-circle text-primary me-2 mt-1"></i>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Col>
         </Row>
 
         <Row className="mb-5">
           <Col lg={12} data-aos="fade-up">
-            <h2 className="mb-4">Como Funciona</h2>
-            <div className="bg-light p-4 rounded">
-              <Row>
-                <Col md={4} className="mb-4 mb-md-0">
-                  <h3 className="h5">Avaliação Individual</h3>
-                  <p>
-                    Cada participante passa por uma avaliação personalizada
-                    para identificarmos suas necessidades específicas.
-                  </p>
-                </Col>
-                <Col md={4} className="mb-4 mb-md-0">
-                  <h3 className="h5">Programa Personalizado</h3>
-                  <p>
-                    Desenvolvemos um programa adaptado às necessidades e
-                    objetivos individuais de cada pessoa.
-                  </p>
-                </Col>
-                <Col md={4}>
-                  <h3 className="h5">Acompanhamento Contínuo</h3>
-                  <p>
-                    Profissionais especializados acompanham o progresso e
-                    fazem ajustes necessários ao programa.
-                  </p>
-                </Col>
+            <div className="bg-light p-4 p-lg-5 rounded-3">
+              <h2 className="h3 mb-4 text-center">Como Funciona</h2>
+              <Row className="g-4">
+                {[
+                  {
+                    title: 'Avaliação Individual',
+                    description: 'Cada participante passa por uma avaliação personalizada para identificarmos suas necessidades específicas.',
+                    icon: 'fa-clipboard-list'
+                  },
+                  {
+                    title: 'Programa Personalizado',
+                    description: 'Desenvolvemos um programa adaptado às necessidades e objetivos individuais de cada pessoa.',
+                    icon: 'fa-user-cog'
+                  },
+                  {
+                    title: 'Acompanhamento Contínuo',
+                    description: 'Profissionais especializados acompanham o progresso e fazem ajustes necessários ao programa.',
+                    icon: 'fa-chart-line'
+                  }
+                ].map((item, index) => (
+                  <Col md={4} key={index} className="text-center">
+                    <div className="p-3">
+                      <i className={`fas ${item.icon} fa-2x text-primary mb-3`}></i>
+                      <h3 className="h5 mb-3">{item.title}</h3>
+                      <p className="mb-0">{item.description}</p>
+                    </div>
+                  </Col>
+                ))}
               </Row>
             </div>
           </Col>
         </Row>
 
         <Row>
-          <Col lg={12} className="text-center" data-aos="fade-up">
-            <h2 className="mb-4">Nossa Metodologia</h2>
-            <p>
-              Utilizamos uma abordagem multidisciplinar que combina práticas
-              baseadas em evidências com atividades personalizadas. Nosso foco
-              está em desenvolver habilidades práticas em ambientes reais,
-              sempre respeitando o ritmo e as características individuais de
-              cada participante.
-            </p>
+          <Col lg={10} className="mx-auto text-center" data-aos="fade-up">
+            <div className="p-4 p-lg-5 bg-light rounded-3">
+              <h2 className="h3 mb-4">Nossa Metodologia</h2>
+              <p className="mb-0">
+                Utilizamos uma abordagem multidisciplinar que combina práticas
+                baseadas em evidências com atividades personalizadas. Nosso foco
+                está em desenvolver habilidades práticas em ambientes reais,
+                sempre respeitando o ritmo e as características individuais de
+                cada participante.
+              </p>
+            </div>
           </Col>
         </Row>
       </Container>

@@ -51,7 +51,7 @@ const Professionals: React.FC = () => {
 
   return (
     <div className="py-5 mt-5">
-      <Container>
+      <Container fluid="lg" className="px-4">
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 mb-4" data-aos="fade-up">
@@ -63,23 +63,21 @@ const Professionals: React.FC = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="g-4">
           {professionals.map((professional, index) => (
-            <Col lg={6} className="mb-4" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-              <Card className="h-100 border-0 shadow-sm">
-                <Row className="g-0">
-                  <Col md={4}>
-                    <div 
-                      className="professional-image h-100" 
-                      style={{
-                        backgroundImage: `url(${professional.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        minHeight: '200px'
-                      }}
-                    />
+            <Col lg={6} key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+              <Card className="h-100 border-0 shadow-sm overflow-hidden">
+                <Row className="g-0 h-100">
+                  <Col xs={12} md={4} className="professional-image-wrapper">
+                    <div className="position-relative h-100">
+                      <img
+                        src={professional.image}
+                        alt={`Foto de ${professional.name}`}
+                        className="professional-image w-100 h-100 object-fit-cover"
+                      />
+                    </div>
                   </Col>
-                  <Col md={8}>
+                  <Col xs={12} md={8}>
                     <Card.Body>
                       <Card.Title className="h4 mb-1">{professional.name}</Card.Title>
                       <Card.Subtitle className="mb-3 text-primary">

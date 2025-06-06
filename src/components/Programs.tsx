@@ -78,7 +78,7 @@ const Programs: React.FC = () => {
 
   return (
     <div className="py-5 mt-5">
-      <Container>
+      <Container fluid="lg" className="px-4">
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 mb-4" data-aos="fade-up">
@@ -91,28 +91,34 @@ const Programs: React.FC = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="g-4">
           {programs.map((program, index) => (
-            <Col lg={4} md={6} className="mb-4" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-              <Card className="h-100 shadow-sm">
-                <Card.Body>
-                  <Badge 
-                    bg={getCategoryColor(program.category)}
-                    className="mb-2"
-                  >
-                    {program.category}
-                  </Badge>
+            <Col xs={12} sm={6} lg={4} key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+              <Card className="h-100 shadow-sm hover-lift">
+                <Card.Body className="d-flex flex-column">
+                  <div className="mb-3">
+                    <Badge 
+                      bg={getCategoryColor(program.category)}
+                      className="badge-lg"
+                    >
+                      {program.category}
+                    </Badge>
+                  </div>
                   <Card.Title className="h4 mb-3">{program.title}</Card.Title>
-                  <Card.Text>{program.description}</Card.Text>
-                  <div className="mt-3">
-                    <small className="text-muted d-block mb-2">
-                      <i className="fas fa-clock me-2"></i>
-                      {program.schedule}
-                    </small>
-                    <small className="text-muted d-block">
-                      <i className="fas fa-layer-group me-2"></i>
-                      Nível: {program.level}
-                    </small>
+                  <Card.Text className="flex-grow-1">{program.description}</Card.Text>
+                  <div className="program-info mt-3 pt-3 border-top">
+                    <div className="d-flex align-items-center mb-2">
+                      <i className="fas fa-clock text-primary me-2"></i>
+                      <small className="text-muted">
+                        {program.schedule}
+                      </small>
+                    </div>
+                    <div className="d-flex align-items-center">
+                      <i className="fas fa-layer-group text-primary me-2"></i>
+                      <small className="text-muted">
+                        Nível: {program.level}
+                      </small>
+                    </div>
                   </div>
                 </Card.Body>
               </Card>
