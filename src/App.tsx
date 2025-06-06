@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import Navigation from './components/Navbar';
@@ -7,12 +7,24 @@ import About from './components/About';
 import Programs from './components/Programs';
 import Professionals from './components/Professionals';
 import Contact from './components/Contact';
+import Testimonials from './components/Testimonials';
+import AOS from 'aos';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'aos/dist/aos.css';
 import './styles/global.css';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50,
+      delay: 50,
+      easing: 'ease-out-cubic'
+    });
+  }, []);
+
   return (
     <div className="app d-flex flex-column min-vh-100">
       <a href="#main-content" className="skip-link">
@@ -25,6 +37,7 @@ const App: React.FC = () => {
           <Route path="/sobre" element={<About />} />
           <Route path="/programacoes" element={<Programs />} />
           <Route path="/profissionais" element={<Professionals />} />
+          <Route path="/depoimentos" element={<Testimonials />} />
           <Route path="/contato" element={<Contact />} />
         </Routes>
       </main>

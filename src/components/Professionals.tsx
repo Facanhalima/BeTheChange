@@ -20,18 +20,18 @@ const Professionals: React.FC = () => {
 
   const professionals: Professional[] = [
     {
-      name: 'Pedag. Tiphanie Brum',
-      role: 'Professora',
-      description: 'Graduada em Pedagogia e cursando especialização em Psicopedagogia. Focada em desenvolver habilidades sociais e comportamentais, com pesquisas sobre necessidades específicas de cada aluno.',
-      specialties: ['Educação Especial', 'Desenvolvimento Social', 'Acompanhamento Individual'],
-      image: '/TiphanieFoto.jpeg',
-    },
-    {
       name: 'Dr. Vincent Spevack',
       role: 'Professor',
       description: 'Fundador e Diretor do Be The Change. professor, com mestrado, doutorado em Educação Especial e atualmente pós doutorado em Educação com ênfase na Educação Inclusiva.',
       specialties: ['Educação Especial', 'Atividades da Vida Diária', 'Adaptação Ambiental'],
       image: '/VincentFoto.png',
+    },
+    {
+      name: 'Pedag. Tiphanie Brum',
+      role: 'Professora',
+      description: 'Graduada em Pedagogia e cursando especialização em Psicopedagogia. Focada em desenvolver habilidades sociais e comportamentais, com pesquisas sobre necessidades específicas de cada aluno.',
+      specialties: ['Educação Especial', 'Desenvolvimento Social', 'Acompanhamento Individual'],
+      image: '/TiphanieFoto.jpeg',
     },
     {
       name: 'Profa. Ana Oliveira',

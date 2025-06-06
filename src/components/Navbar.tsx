@@ -46,9 +46,9 @@ const Navigation: React.FC = () => {
       <Container fluid="lg" className="px-4">
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
-            src="/BeTheChangeLogo.png"
+            src="BeTheChangeNavBarNova.png"
             alt="Be the Change Logo"
-            height="40"
+            height="60"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>

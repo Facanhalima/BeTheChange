@@ -77,19 +77,90 @@ p {
   color: #4a5568;
 }
 
-/* Animações Suaves */
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
+/* Performance Optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
+/* Otimização de renderização */
+.card,
+.btn,
+.nav-link,
+.form-control {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Transições Otimizadas */
+.transition-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Animações mais suaves */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+/* Otimização de scroll */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+}
+
+/* Melhorias de Performance para Imagens */
+img {
+  content-visibility: auto;
+}
+
+/* Lazy Loading para Imagens */
+img.lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+/* Otimização de Animações */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* Redução de Layout Shifts */
+.navbar-fixed-padding {
+  padding-top: var(--navbar-height);
+}
+
+/* Melhorias de Performance para Mobile */
+@media (max-width: 768px) {
+  * {
+    transition-duration: 0.2s !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
   }
 }
 
@@ -205,14 +276,6 @@ section {
 
 .rounded-lg {
   border-radius: 12px !important;
-}
-
-.hover-lift {
-  transition: transform 0.2s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
 }
 
 /* Acessibilidade para Motion Reduced */
