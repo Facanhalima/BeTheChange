@@ -42,9 +42,11 @@ const Home: React.FC = () => {
         <Container fluid="lg" className="px-4 min-vh-100 d-flex align-items-center">
           <Row className="align-items-center gy-5">
             <Col lg={6} data-aos="fade-right">
-              <span className="badge bg-primary mb-3 px-3 py-2 rounded-pill">
-                Be the Change Rio
-              </span>
+              <div className="badge-container">
+                <span className="badge mb-3">
+                  Be the Change Rio
+                </span>
+              </div>
               <h1 className="display-4 fw-bold mb-4">
               Um caminho para a inclusão e independência.
               </h1>
@@ -90,9 +92,11 @@ const Home: React.FC = () => {
         <Container fluid="lg" className="px-4">
           <Row className="mb-5">
             <Col lg={8} className="mx-auto text-center">
-              <span className="badge bg-primary mb-3 px-3 py-2 rounded-pill">
-                Nossos Serviços
-              </span>
+              <div className="badge-container">
+                <span className="badge mb-3">
+                  Nossos Serviços
+                </span>
+              </div>
               <h2 className="display-5 mb-4">
                 Como desenvolvemos a autonomia
               </h2>
@@ -125,9 +129,11 @@ const Home: React.FC = () => {
         <Container fluid="lg" className="px-4">
           <Row className="mb-5">
             <Col lg={8} className="mx-auto text-center">
-              <span className="badge bg-primary mb-3 px-3 py-2 rounded-pill">
-                Depoimentos
-              </span>
+              <div className="badge-container">
+                <span className="badge mb-3">
+                  Depoimentos
+                </span>
+              </div>
               <h2 className="display-5 mb-4">
                 O que dizem sobre nós
               </h2>

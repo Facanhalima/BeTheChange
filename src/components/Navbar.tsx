@@ -34,22 +34,31 @@ const Navigation: React.FC = () => {
     setIsExpanded(false);
   }, [location]);
 
+  const handleNavClick = () => {
+    setIsExpanded(false);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <Navbar
       expand="lg"
       fixed="top"
       className={`py-3 transition-all ${
-        isScrolled ? 'shadow-sm bg-white' : 'bg-transparent'
+        isScrolled ? 'shadow-sm scrolled' : 'bg-transparent'
       }`}
       expanded={isExpanded}
     >
       <Container fluid="lg" className="px-4">
-        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center" onClick={handleNavClick}>
           <img
             src="BeTheChangeNavBarNova.png"
             alt="Be the Change Logo"
-            height="60"
+            height="75"
             className="d-inline-block align-top"
+            style={{ maxWidth: '100%', objectFit: 'contain' }}
           />
         </Navbar.Brand>
         
@@ -67,6 +76,7 @@ const Navigation: React.FC = () => {
               as={Link} 
               to="/" 
               className={`px-3 ${location.pathname === '/' ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               Início
             </Nav.Link>
@@ -74,6 +84,7 @@ const Navigation: React.FC = () => {
               as={Link} 
               to="/sobre" 
               className={`px-3 ${location.pathname === '/sobre' ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               Sobre
             </Nav.Link>
@@ -81,6 +92,7 @@ const Navigation: React.FC = () => {
               as={Link} 
               to="/profissionais" 
               className={`px-3 ${location.pathname === '/profissionais' ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               Profissionais
             </Nav.Link>
@@ -88,6 +100,7 @@ const Navigation: React.FC = () => {
               as={Link} 
               to="/programacoes" 
               className={`px-3 ${location.pathname === '/programacoes' ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               Serviços
             </Nav.Link>
@@ -95,12 +108,13 @@ const Navigation: React.FC = () => {
               as={Link} 
               to="/depoimentos" 
               className={`px-3 ${location.pathname === '/depoimentos' ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               Depoimentos
             </Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Link to="/contato" className="text-decoration-none">
+            <Link to="/contato" className="text-decoration-none" onClick={handleNavClick}>
               <Button
                 variant="primary"
                 className="rounded-pill px-4"

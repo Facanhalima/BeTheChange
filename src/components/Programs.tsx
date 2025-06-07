@@ -66,11 +66,11 @@ const Programs: React.FC = () => {
   const getCategoryColor = (category: string): string => {
     switch (category.toLowerCase()) {
       case 'autonomia':
-        return 'primary';
+        return 'autonomia';
       case 'independência':
-        return 'success';
+        return 'independencia';
       case 'socialização':
-        return 'info';
+        return 'socializacao';
       default:
         return 'secondary';
     }
@@ -81,6 +81,11 @@ const Programs: React.FC = () => {
       <Container fluid="lg" className="px-4">
         <Row className="mb-5">
           <Col lg={8} className="mx-auto text-center">
+            <div className="badge-container">
+              <span className="badge mb-3">
+                Nossas Programações
+              </span>
+            </div>
             <h1 className="display-4 mb-4" data-aos="fade-up">
               Nossas Programações
             </h1>

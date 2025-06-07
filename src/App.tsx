@@ -8,6 +8,7 @@ import Programs from './components/Programs';
 import Professionals from './components/Professionals';
 import Contact from './components/Contact';
 import Testimonials from './components/Testimonials';
+import ScrollToTop from './components/ScrollToTop';
 import AOS from 'aos';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -27,6 +28,7 @@ const App: React.FC = () => {
 
   return (
     <div className="app d-flex flex-column min-vh-100">
+      <ScrollToTop />
       <a href="#main-content" className="skip-link">
         Pular para o conteúdo principal
       </a>

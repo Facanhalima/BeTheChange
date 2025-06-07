@@ -1,14 +1,27 @@
 :root {
-  --primary-color: #0066cc;
-  --secondary-color: #4d94ff;
+  /* Cores principais */
+  --primary: #3B7B7B;      /* Tom principal da logo (teal) */
+  --primary-dark: #2A5959; /* Versão mais escura para hover */
+  --primary-light: #4C9999; /* Versão mais clara para elementos secundários */
+  
+  /* Cores de suporte */
+  --secondary: #F5F5F5;    /* Cinza muito claro para fundos */
+  --accent: #E6B17E;       /* Cor de destaque complementar (tom terroso) */
+  
+  /* Cores de texto */
+  --text-dark: #000000;    /* Texto principal preto */
+  --text-light: #FFFFFF;   /* Texto sobre fundos escuros */
+  --text-muted: #000000;   /* Texto secundário também preto */
+  
+  /* Cores de estado */
+  --success: #28A745;
+  --warning: #FFC107;
+  --danger: #DC3545;
+  --info: var(--primary-light);  /* Mudando a cor info para usar o tom mais claro do verde */
   --background-color: #ffffff;
-  --text-color: #333333;
   --accent-color: #00478f;
   --light-gray: #f8f9fa;
   --border-color: #e5e7eb;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
   --navbar-height: 80px;
 }
 
@@ -18,14 +31,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;   
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--secondary);
+  color: var(--text-dark);
   line-height: 1.6;
 }
 
 /* Melhorias de Acessibilidade */
 :focus {
-  outline: 3px solid var(--primary-color);
+  outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -34,7 +47,7 @@ body {
   left: -9999px;
   z-index: 999;
   padding: 1em;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: white;
   text-decoration: none;
 }
@@ -46,7 +59,7 @@ body {
 
 /* Estilos de Texto */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-color);
+  color: var(--text-dark) !important;
   margin-bottom: 1.5rem;
   font-weight: 600;
   line-height: 1.3;
@@ -64,10 +77,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-p {
+p, span, li, label, .lead {
+  color: var(--text-dark) !important;
   margin-bottom: 1.25rem;
   font-size: 1.1rem;
-  color: #4a5568;
 }
 
 .lead {
@@ -172,31 +185,33 @@ img.lazy.loaded {
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--text-light) !important;
   padding: 0.75rem 1.75rem;
   border-radius: 8px;
 }
 
-.btn-primary:hover {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Cards */
 .card {
-  border: 1px solid var(--border-color);
+  border: none;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Formulários */
@@ -209,31 +224,32 @@ img.lazy.loaded {
 }
 
 .form-control:focus {
-  border-color: var(--primary-color);
+  border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
 }
 
 /* Navegação */
 .navbar {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--text-light);
   backdrop-filter: blur(8px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+.navbar.scrolled {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .nav-link {
-  color: var(--text-color);
+  color: var(--text-dark) !important;
   font-weight: 500;
   padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
+  transition: color 0.3s ease;
   position: relative;
 }
 
-.nav-link:hover {
-  color: var(--primary-color);
-}
-
+.nav-link:hover,
 .nav-link.active {
-  color: var(--primary-color);
+  color: var(--primary) !important;
 }
 
 .nav-link.active::after {
@@ -243,7 +259,7 @@ img.lazy.loaded {
   left: 1rem;
   right: 1rem;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
 }
 
 /* Seções */
@@ -286,4 +302,185 @@ section {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-} 
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary) !important;
+  color: var(--text-light) !important;
+}
+
+footer, footer * {
+  color: var(--text-light) !important;
+}
+
+footer a {
+  color: var(--text-light) !important;
+  opacity: 0.9;
+}
+
+footer a:hover {
+  opacity: 1;
+  color: var(--secondary) !important;
+}
+
+/* Exceção para textos em cards com fundo colorido */
+.bg-primary p,
+.bg-primary span,
+.bg-primary li,
+.bg-primary label,
+.bg-primary .lead,
+footer p,
+footer span,
+footer li,
+footer label,
+footer .lead {
+  color: var(--text-light) !important;
+}
+
+/* Exceção para títulos em cards com fundo colorido */
+.bg-primary h1,
+.bg-primary h2,
+.bg-primary h3,
+.bg-primary h4,
+.bg-primary h5,
+.bg-primary h6,
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6 {
+  color: var(--text-light) !important;
+}
+
+/* Badges e elementos de destaque */
+.badge.bg-primary,
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.badge.bg-info,
+.bg-info {
+  background-color: var(--primary-light) !important;
+}
+
+/* Texto muted */
+.text-muted {
+  color: var(--text-dark) !important;
+  opacity: 0.8;
+}
+
+/* Exceção para texto muted em cards com fundo colorido */
+.bg-primary .text-muted,
+footer .text-muted {
+  color: var(--text-light) !important;
+  opacity: 0.9;
+}
+
+/* Badges de Categoria */
+.badge {
+  padding: 0.5em 1em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Cores específicas para cada categoria */
+.bg-autonomia {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF4B4B 100%) !important;
+  color: white !important;
+  border: none;
+  box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.bg-independencia {
+  background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%) !important;
+  color: white !important;
+  border: none;
+  box-shadow: 0 2px 4px rgba(79, 172, 254, 0.3);
+}
+
+.bg-socializacao {
+  background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%) !important;
+  color: white !important;
+  border: none;
+  box-shadow: 0 2px 4px rgba(67, 233, 123, 0.3);
+}
+
+/* Efeito hover para os badges */
+.badge.bg-autonomia:hover,
+.badge.bg-independencia:hover,
+.badge.bg-socializacao:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação suave para todos os badges */
+.badge {
+  transition: all 0.3s ease;
+}
+
+/* Badges de Seção */
+.badge.mb-3 {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+  color: white !important;
+  padding: 0.8em 1.5em !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 15px rgba(59, 123, 123, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de brilho */
+.badge.mb-3::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+  pointer-events: none;
+}
+
+/* Animação do efeito de brilho */
+@keyframes shine {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(150%) translateY(150%) rotate(45deg);
+  }
+}
+
+/* Efeito hover para badges de seção */
+.badge.mb-3:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 123, 123, 0.3);
+}
+
+/* Ajuste do container do badge para centralização */
+.badge-container {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
