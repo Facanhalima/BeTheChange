@@ -1,223 +1,158 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import AOS from 'aos';
-
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-}
+import { init, send } from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
-
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  React.useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+  useEffect(() => {
+    // Inicializa o EmailJS quando o componente montar
+    try {
+      init(EMAILJS_CONFIG.PUBLIC_KEY);
+      console.log('EmailJS inicializado com sucesso');
+    } catch (error) {
+      console.error('Erro ao inicializar EmailJS:', error);
+    }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aqui você implementaria a lógica de envio do formulário
-    console.log('Dados do formulário:', formData);
-    setShowSuccess(true);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    });
-    setTimeout(() => setShowSuccess(false), 5000);
-  };
+    
+    if (!form.current) return;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
+    try {
+      setIsSubmitting(true);
+      setShowSuccess(false);
+      setShowError(false);
+      setErrorMessage('');
+
+      console.log('Enviando email com as configurações:', {
+        serviceId: EMAILJS_CONFIG.SERVICE_ID,
+        templateId: EMAILJS_CONFIG.TEMPLATE_ID,
+        publicKey: EMAILJS_CONFIG.PUBLIC_KEY
+      });
+
+      const templateParams = {
+        to_email: "facanhalima85@gmail.com",
+        user_name: form.current.user_name.value,
+        user_email: form.current.user_email.value,
+        subject: form.current.subject.value,
+        message: form.current.message.value,
+        reply_to: form.current.user_email.value
+      };
+
+      console.log('Parâmetros do template:', templateParams);
+
+      const result = await send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      console.log('Resultado do envio:', result);
+
+      if (result.status === 200) {
+        setShowSuccess(true);
+        form.current.reset();
+      } else {
+        setErrorMessage('Erro ao enviar mensagem: ' + result.text);
+        setShowError(true);
+      }
+    } catch (error: any) {
+      console.error('Erro ao enviar email:', error);
+      setErrorMessage(error?.text || 'Erro desconhecido ao enviar mensagem');
+      setShowError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="py-5 mt-5">
-      <Container fluid="lg" className="px-4">
-        <Row className="mb-5">
-          <Col lg={8} className="mx-auto text-center">
-            <div className="badge-container">
-              <span className="badge mb-3">
-                Contato
-              </span>
-            </div>
-            <h1 className="display-4 mb-4" data-aos="fade-up">
-              Entre em Contato
-            </h1>
-            <p className="lead mb-5" data-aos="fade-up" data-aos-delay="100">
-              Estamos aqui para responder suas dúvidas e ajudar você a fazer
-              parte do Be the Change.
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <div className="text-center mb-5">
+            <h1 className="display-4 mb-3">Fale Conosco</h1>
+            <p className="lead">
+              Entre em contato conosco para mais informações sobre nossos serviços.
             </p>
-          </Col>
-        </Row>
+          </div>
 
-        <Row className="justify-content-center g-4">
-          <Col lg={8}>
-            <div className="contact-form bg-light p-4 p-lg-5 rounded-3 shadow-sm" data-aos="fade-up">
-              {showSuccess && (
-                <Alert variant="success" className="mb-4">
-                  Mensagem enviada com sucesso! Entraremos em contato em breve.
-                </Alert>
-              )}
+          {showSuccess && (
+            <Alert variant="success" onClose={() => setShowSuccess(false)} dismissible>
+              Mensagem enviada com sucesso! Entraremos em contato em breve.
+            </Alert>
+          )}
 
-              <Form onSubmit={handleSubmit}>
-                <Row className="g-4">
-                  <Col sm={6}>
-                    <Form.Group>
-                      <Form.Label htmlFor="name">Nome</Form.Label>
-                      <Form.Control
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        placeholder="Digite seu nome"
-                        className="form-control-lg"
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col sm={6}>
-                    <Form.Group>
-                      <Form.Label htmlFor="email">E-mail</Form.Label>
-                      <Form.Control
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        placeholder="Digite seu e-mail"
-                        className="form-control-lg"
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col sm={6}>
-                    <Form.Group>
-                      <Form.Label htmlFor="phone">Telefone</Form.Label>
-                      <Form.Control
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="Digite seu telefone"
-                        className="form-control-lg"
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col sm={6}>
-                    <Form.Group>
-                      <Form.Label htmlFor="subject">Assunto</Form.Label>
-                      <Form.Select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        className="form-control-lg"
-                      >
-                        <option value="">Selecione um assunto</option>
-                        <option value="informacoes">Informações Gerais</option>
-                        <option value="inscricao">Inscrição no Programa</option>
-                        <option value="visita">Agendar Visita</option>
-                        <option value="outro">Outro Assunto</option>
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12}>
-                    <Form.Group>
-                      <Form.Label htmlFor="message">Mensagem</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        aria-required="true"
-                        rows={5}
-                        placeholder="Digite sua mensagem"
-                        className="form-control-lg"
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
+          {showError && (
+            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+              {errorMessage || 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.'}
+            </Alert>
+          )}
 
-                <div className="text-center mt-4">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    className="px-5 py-3 rounded-pill"
-                  >
-                    Enviar Mensagem
-                  </Button>
-                </div>
-              </Form>
+          <Form ref={form} onSubmit={handleSubmit} className="contact-form">
+            <Form.Group className="mb-3">
+              <Form.Label>Nome</Form.Label>
+              <Form.Control
+                type="text"
+                name="user_name"
+                placeholder="Seu nome completo"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="user_email"
+                placeholder="seu.email@exemplo.com"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Assunto</Form.Label>
+              <Form.Control
+                type="text"
+                name="subject"
+                placeholder="Assunto da mensagem"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label>Mensagem</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="message"
+                rows={5}
+                placeholder="Digite sua mensagem aqui..."
+                required
+              />
+            </Form.Group>
+
+            <div className="d-grid">
+              <Button
+                variant="primary"
+                type="submit"
+                size="lg"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+              </Button>
             </div>
-
-            <div className="contact-info mt-5" data-aos="fade-up">
-              <Row className="g-4">
-                {[
-                  {
-                    icon: 'fa-map-marker-alt',
-                    title: 'Endereço',
-                    content: ['Rua Maria Eugênia, 300', 'Rio de Janeiro – RJ']
-                  },
-                  {
-                    icon: 'fa-phone',
-                    title: 'Telefone',
-                    content: ['(21) 99627-8101']
-                  },
-                  {
-                    icon: 'fa-envelope',
-                    title: 'E-mail',
-                    content: ['bethechangerio@gmail.com']
-                  }
-                ].map((item, index) => (
-                  <Col md={4} key={index}>
-                    <div className="contact-item text-center p-4 bg-light rounded-3 h-100">
-                      <i className={`fas ${item.icon} fa-2x text-primary mb-3`}></i>
-                      <h3 className="h5 mb-3">{item.title}</h3>
-                      {item.content.map((line, idx) => (
-                        <p key={idx} className={idx === item.content.length - 1 ? 'mb-0' : 'mb-1'}>
-                          {line}
-                        </p>
-                      ))}
-                    </div>
-                  </Col>
-                ))}
-              </Row>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default Contact; 
+export default Contact;

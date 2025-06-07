@@ -1,0 +1,10 @@
+To: {{to_email}}
+From: {{user_email}}
+Reply-To: {{reply_to}}
+Subject: {{subject}}
+
+Nome: {{user_name}}
+Email: {{user_email}}
+
+Mensagem:
+{{message}}
